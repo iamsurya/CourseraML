@@ -17,16 +17,16 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
-
-
-
-
-
-
-
-
-
-
+    y_ = X * theta; % h(x)
+    sum_ = sum((y_ - y).*X); % Sum term in gradient descent. Each column is sum for different theta (different x_j).
+    rhsval = alpha * sum_ / m;
+    
+  
+%     for j = 1 : length(theta)
+%         theta(j) = theta(j) - rhsval(j);
+%     end
+    
+    theta = theta - rhsval'; % Alternate method without for loop
     % ============================================================
 
     % Save the cost J in every iteration    

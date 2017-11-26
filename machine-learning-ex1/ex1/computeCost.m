@@ -13,9 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+% hypothesis should be a 97 x 1 vector (same as y)
+y_ = X * theta; % ( [97 x 2] * [2 x 1] = [97 x 1] )
 
-
-
+J = sum((y_ - y).^2)/(2*m);
 
 % =========================================================================
 

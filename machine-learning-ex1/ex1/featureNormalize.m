@@ -26,13 +26,20 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+mu = mean(X);
+sigma = std(X);
 
+% Method 1 of doing this
+for i = 1 : size(X,2)
+   X_norm(:,i) = (X(:,i) - mu(i))/sigma(i);
+end
 
-
-
-
-
-
+% Method 2 of doing this using Matlab factorization
+% X_norm = X - mu; % Matlab will subtract mu values from each X row
+% 
+% for i = 1:size(X,2)
+%    X_norm(:,i) = X_norm(:,i) / sigma(i); 
+% end
 
 % ============================================================
 
