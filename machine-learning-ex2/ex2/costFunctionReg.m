@@ -18,8 +18,20 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+h = sigmoid(X * theta); % We want a m X 1 matrix for h. X(m,n) * theta(n,1) = h(m,1)
 
+% The summation can be broken into two summations. Each of those can be
+% calculated using matrix multiplication.
 
+J =  ( (-(y' * log(h))) - ((1 - y)' * log(1-h))) / m; % Using log to base e
+regterm = (lambda/(2*m)) * (theta(2:end)'*theta(2:end));
+
+J = J + regterm; % Regularize sum(theta^2) * l/m;
+
+grad = (((h - y)' * X) / m)';
+regterm = (lambda/m) * theta;
+regterm(1) = 0;
+grad = grad + regterm;
 
 
 % =============================================================

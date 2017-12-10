@@ -12,13 +12,30 @@ figure; hold on;
 %               examples and 'ko' for the negative examples.
 %
 
+% X1 = [];
+% X2 = [];
+% for i = 1:length(X)
+%     if(y(i) == 1)
+%         X1 = [X1; X(i,:)];
+%     else 
+%         X2 = [X2; X(i,:)];
+%     end
+% end
+% 
+% plot(X1(:, 1), X1(:, 2), 'k+','LineWidth', 2, ...
+% 'MarkerSize', 7);
+% plot(X2(:, 1), X2(:, 2), 'ko', 'MarkerFaceColor', 'y', ...
+% 'MarkerSize', 7);
 
+%% Faster Method
 
+pos = find(y == 1); % All indices filled with 1
+neg = find(y == 0);  % ... with 0
 
-
-
-
-
+plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 2, ...
+'MarkerSize', 7);
+plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', ...
+'MarkerSize', 7);
 
 % =========================================================================
 

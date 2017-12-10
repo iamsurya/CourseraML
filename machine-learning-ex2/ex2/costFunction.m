@@ -20,8 +20,18 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+%h = sigmoid(theta'*X); % Incorrect, dimensions don't match for the
+% function parameters
 
 
+h = sigmoid(X * theta); % We want a m X 1 matrix for h. X(m,n) * theta(n,1) = h(m,1)
+
+% The summation can be broken into two summations. Each of those can be
+% calculated using matrix multiplication.
+
+J =  ( (-(y' * log(h))) - ((1 - y)' * log(1-h))) / m; % Using log to base e
+
+grad = ((h - y)' * X) / m;
 
 
 
