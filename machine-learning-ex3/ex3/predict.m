@@ -20,12 +20,19 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
+X = [ones(size(X,1),1) X];
 
+%Z2 = [ones(1,size(X,1)); sigmoid(Theta1 * X')]; % Gives values of activation layer 2.
+% Z3 = sigmoig(Theta2 * Z2);  % This gives 10 X M matrix which we don't
+% want.
+%Z3 = sigmoid(Z2'
 
+Z2 = sigmoid(X * Theta1'); % Gives values of activation layer 2.
+Z2 = [ones(size(X,1),1) Z2];
 
+Z3 = sigmoid(Z2 * Theta2');
 
-
-
+[~,p] = max(Z3, [], 2);
 
 
 

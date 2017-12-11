@@ -30,8 +30,17 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% When you have X (m,n) and theta(n,1), you get h(m,1)
+% i.e. probability for each training set belonging to the class.
+% when you have X (m,n) and theta(n,k), you get h(m,k)
+% i.e. probability for each traning set m beloning to class (col) k.
 
+% all theta has order (m,n) m class, n features. We need (n,m) for
+% multiplication.
+h = sigmoid(X * all_theta');
 
+% We want indices, not the values themselves (unless debugging).
+[~, p] = max(h, [], 2);
 
 
 

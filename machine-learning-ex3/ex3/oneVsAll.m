@@ -49,17 +49,31 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+%% The purpose of this code is to find optimum theta for each class (label),
+% so we will have to use a for loop that runs to the number of labels.
+% Each row of the theta is the theta for that label.
+% this is why all theta has num_labels rows and n + 1 columns( +1 for
+% theta0).
 
+for c = 1 : num_labels
 
+    % Set Initial thetas to zero
+    initial_theta = zeros(n + 1, 1);
+    
+    % Set options for fminunc
+    options = optimset('GradObj', 'on', 'MaxIter', 50);
 
-
-
-
-
-
-
-
-
+    % Run fmincg to obtain the optimal theta
+    % for label c. fmincg is trying to find the optimal theta value
+    % for the data and the ground truth classification is 1 when y == c, otherwise 0.
+    % This function will return theta and the cost 
+    [theta] = ...
+        fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), ...
+                initial_theta, options);
+            
+     % theta is now a column vector (we need to turn it into a row).
+    all_theta(c,:) = theta';
+end
 % =========================================================================
 
 
